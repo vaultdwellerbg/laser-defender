@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 1f;
+    [SerializeField] GameObject laserPrefab;
+    [SerializeField] float projectileSpeed = 8f;
 
     float xMin, xMax, yMin, yMax;
 
@@ -15,6 +18,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Move();
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Fire();
+        }
     }
 
     private void SetUpMoveBoundaries()
@@ -35,5 +42,11 @@ public class Player : MonoBehaviour
         var newYPos = Mathf.Clamp(transform.position.y + deltaY, yMin, yMax);
 
         transform.position = new Vector2(newXPos, newYPos);
+    }
+
+    private void Fire()
+    {
+        GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
+        laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
     }
 }
