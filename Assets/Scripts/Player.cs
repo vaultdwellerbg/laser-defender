@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -7,8 +7,10 @@ public class Player : MonoBehaviour
     [SerializeField] float padding = 1f;
     [SerializeField] GameObject laserPrefab;
     [SerializeField] float projectileSpeed = 8f;
+    [SerializeField] float projectileFiringPeriod = 0.3f;
 
     float xMin, xMax, yMin, yMax;
+    bool fireButtonPressed = false;
 
     private void Start()
     {
@@ -18,9 +20,16 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Move();
+
         if (Input.GetButtonDown("Fire1"))
         {
-            Fire();
+            fireButtonPressed = true;
+            StartCoroutine(FireContinuously()); 
+        }
+
+        if (Input.GetButtonUp("Fire1"))
+        {
+            fireButtonPressed = false;
         }
     }
 
@@ -44,9 +53,14 @@ public class Player : MonoBehaviour
         transform.position = new Vector2(newXPos, newYPos);
     }
 
-    private void Fire()
+    private IEnumerator FireContinuously()
     {
-        GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
-        laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
+        while (fireButtonPressed)
+        {
+            GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
+            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
+
+            yield return new WaitForSeconds(projectileFiringPeriod);
+        }
     }
 }
