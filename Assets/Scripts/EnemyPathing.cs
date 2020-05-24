@@ -25,6 +25,8 @@ public class EnemyPathing : MonoBehaviour
 
     private void Move()
     {
+        if (waveConfig == null) return;
+
         var moveSpeed = waveConfig.GetMoveSpeed();
         if (currentWaypointIndex <= waypoints.Count - 1)
         {
