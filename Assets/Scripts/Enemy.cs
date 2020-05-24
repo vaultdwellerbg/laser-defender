@@ -11,7 +11,16 @@ public class Enemy : MonoBehaviour
         DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
         if (damageDealer != null)
         {
-            health -= damageDealer.GetDamage();
+            HandleHit(damageDealer);
+        }
+    }
+
+    private void HandleHit(DamageDealer damageDealer)
+    {
+        health -= damageDealer.GetDamage();
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
