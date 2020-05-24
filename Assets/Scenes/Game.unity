@@ -236,6 +236,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a2ff1dfc554902945b7d9aa025e39a23, type: 2}
   - {fileID: 11400000, guid: e97c9cf0f1e99514294548a8ae30ff1a, type: 2}
   startingWaveIndex: 0
+  looping: 1
 --- !u!1001 &1399771456370020789
 PrefabInstance:
   m_ObjectHideFlags: 0
