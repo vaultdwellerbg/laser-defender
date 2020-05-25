@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject laserPrefab;
     [SerializeField] float projectileSpeed = 8f;
     [SerializeField] float projectileFiringPeriod = 0.3f;
-    [SerializeField] float projectilePadding = 0.7f;
 
     float xMin, xMax, yMin, yMax;
     bool fireButtonPressed = false;
@@ -71,8 +70,7 @@ public class Player : MonoBehaviour
     {
         while (fireButtonPressed)
         {
-            var laserPosition = new Vector2(transform.position.x, transform.position.y + projectilePadding);
-            GameObject laser = Instantiate(laserPrefab, laserPosition, Quaternion.identity) as GameObject;
+            GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
 
             yield return new WaitForSeconds(projectileFiringPeriod);
