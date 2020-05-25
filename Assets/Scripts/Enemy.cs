@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float maxTimeBetweenShots = 3f;
     [SerializeField] GameObject laserPrefab;
     [SerializeField] float projectileSpeed = 8f;
+    [SerializeField] float projectilePadding = 0.7f;
 
     private void Start()
     {
@@ -45,7 +46,8 @@ public class Enemy : MonoBehaviour
 
     private void Fire()
     {
-        GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
+        var laserPosition = new Vector2(transform.position.x, transform.position.y - projectilePadding);
+        GameObject laser = Instantiate(laserPrefab, laserPosition, Quaternion.identity) as GameObject;
         laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -projectileSpeed);
     }
 

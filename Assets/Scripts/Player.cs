@@ -3,11 +3,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player")]
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 1f;
+    [SerializeField] int health = 500;
+
+    [Header("Projectile")]
     [SerializeField] GameObject laserPrefab;
     [SerializeField] float projectileSpeed = 8f;
     [SerializeField] float projectileFiringPeriod = 0.3f;
+    [SerializeField] float projectilePadding = 0.7f;
 
     float xMin, xMax, yMin, yMax;
     bool fireButtonPressed = false;
@@ -30,6 +35,15 @@ public class Player : MonoBehaviour
         if (Input.GetButtonUp("Fire1"))
         {
             fireButtonPressed = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        DamageDealer damageDealer = collision.gameObject.GetComponent<DamageDealer>();
+        if (damageDealer != null)
+        {
+            HandleHit(damageDealer);
         }
     }
 
@@ -57,10 +71,20 @@ public class Player : MonoBehaviour
     {
         while (fireButtonPressed)
         {
-            GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
+            var laserPosition = new Vector2(transform.position.x, transform.position.y + projectilePadding);
+            GameObject laser = Instantiate(laserPrefab, laserPosition, Quaternion.identity) as GameObject;
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
 
             yield return new WaitForSeconds(projectileFiringPeriod);
+        }
+    }
+
+    private void HandleHit(DamageDealer damageDealer)
+    {
+        health -= damageDealer.GetDamage();
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
