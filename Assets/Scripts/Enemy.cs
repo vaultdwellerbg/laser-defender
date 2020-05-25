@@ -51,6 +51,7 @@ public class Enemy : MonoBehaviour
 
     private void HandleHit(DamageDealer damageDealer)
     {
+        damageDealer.Hit();
         health -= damageDealer.GetDamage();
         if (health <= 0)
         {
