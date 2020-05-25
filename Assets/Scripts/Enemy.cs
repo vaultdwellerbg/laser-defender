@@ -1,10 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] float health = 100f;
+    [SerializeField] float shotCounter;
+    [SerializeField] float minTimeBeforeShots = 0.2f;
+    [SerializeField] float maxTimeBetweenShots = 3f;
+    [SerializeField] GameObject laserPrefab;
+    [SerializeField] float projectileSpeed = 8f;
+
+    private void Start()
+    {
+        InitShotCounter();
+    }
+
+    private void Update()
+    {
+        CountDownAndShoot();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,6 +26,27 @@ public class Enemy : MonoBehaviour
         {
             HandleHit(damageDealer);
         }
+    }
+
+    private void InitShotCounter()
+    {
+        shotCounter = UnityEngine.Random.Range(minTimeBeforeShots, maxTimeBetweenShots);
+    }
+
+    private void CountDownAndShoot()
+    {
+        shotCounter -= Time.deltaTime;
+        if (shotCounter <= 0f)
+        {
+            Fire();
+            InitShotCounter();
+        }
+    }
+
+    private void Fire()
+    {
+        GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
+        laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -projectileSpeed);
     }
 
     private void HandleHit(DamageDealer damageDealer)
