@@ -116,7 +116,8 @@ MonoBehaviour:
   laserPrefab: {fileID: 8042875348531936398, guid: b57ea60d1a3214b4fb3588fe61e011d1,
     type: 3}
   projectileSpeed: 8
-  projectilePadding: 0.7
+  explosionPrefab: {fileID: 1207776421041762814, guid: a15c0e5126ff2414b98aab2e0ce09dec,
+    type: 3}
 --- !u!50 &-4750246643610642884
 Rigidbody2D:
   serializedVersion: 4
