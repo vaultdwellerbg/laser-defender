@@ -113,11 +113,15 @@ MonoBehaviour:
   shotCounter: 0
   minTimeBeforeShots: 0.2
   maxTimeBetweenShots: 3
+  explosionPrefab: {fileID: 1207776421041762814, guid: a15c0e5126ff2414b98aab2e0ce09dec,
+    type: 3}
   laserPrefab: {fileID: 8042875348531936398, guid: b57ea60d1a3214b4fb3588fe61e011d1,
     type: 3}
   projectileSpeed: 8
-  explosionPrefab: {fileID: 1207776421041762814, guid: a15c0e5126ff2414b98aab2e0ce09dec,
-    type: 3}
+  explosionSound: {fileID: 8300000, guid: 54f2c5ca070c13049b59ea86a73cf807, type: 3}
+  explosionVolume: 1
+  shootingSound: {fileID: 8300000, guid: 19d8f979f382d524493fb0e371e3f991, type: 3}
+  shootingVolume: 1
 --- !u!50 &4713954358878605541
 Rigidbody2D:
   serializedVersion: 4

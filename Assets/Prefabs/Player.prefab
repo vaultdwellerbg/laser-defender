@@ -103,7 +103,10 @@ MonoBehaviour:
     type: 3}
   projectileSpeed: 12
   projectileFiringPeriod: 0.3
-  projectilePadding: 0.7
+  explosionClip: {fileID: 8300000, guid: 39748f6b9e3c7884094e9d6af9ba5e8e, type: 3}
+  explosionVolume: 1
+  shootingClip: {fileID: 8300000, guid: dbde2274b8604f745a84498a589a42a2, type: 3}
+  shootingVolume: 1
 --- !u!50 &398499837
 Rigidbody2D:
   serializedVersion: 4

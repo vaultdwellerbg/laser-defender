@@ -13,6 +13,12 @@ public class Player : MonoBehaviour
     [SerializeField] float projectileSpeed = 8f;
     [SerializeField] float projectileFiringPeriod = 0.3f;
 
+    [Header("Sounds")]
+    [SerializeField] AudioClip explosionClip;
+    [Range(0.0f, 1f)] [SerializeField] float explosionVolume = 1f;
+    [SerializeField] AudioClip shootingClip;
+    [Range(0.0f, 1f)] [SerializeField] float shootingVolume = 1f;
+
     float xMin, xMax, yMin, yMax;
     bool fireButtonPressed = false;
 
@@ -70,11 +76,17 @@ public class Player : MonoBehaviour
     {
         while (fireButtonPressed)
         {
-            GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
-            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
+            Fire();
 
             yield return new WaitForSeconds(projectileFiringPeriod);
         }
+    }
+
+    private void Fire()
+    {
+        GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
+        laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
+        AudioSource.PlayClipAtPoint(shootingClip, Camera.main.transform.position, shootingVolume);
     }
 
     private void HandleHit(DamageDealer damageDealer)
@@ -83,7 +95,13 @@ public class Player : MonoBehaviour
         health -= damageDealer.GetDamage();
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Explode();
         }
+    }
+
+    private void Explode()
+    {
+        AudioSource.PlayClipAtPoint(explosionClip, Camera.main.transform.position, explosionVolume);
+        Destroy(gameObject);
     }
 }

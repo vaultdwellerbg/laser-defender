@@ -2,13 +2,22 @@
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Enemy")]
     [SerializeField] float health = 100f;
     [SerializeField] float shotCounter;
     [SerializeField] float minTimeBeforeShots = 0.2f;
     [SerializeField] float maxTimeBetweenShots = 3f;
+    [SerializeField] GameObject explosionPrefab;
+
+    [Header("Projectile")]
     [SerializeField] GameObject laserPrefab;
     [SerializeField] float projectileSpeed = 8f;
-    [SerializeField] GameObject explosionPrefab;
+
+    [Header("Sounds")]
+    [SerializeField] AudioClip explosionSound;
+    [Range(0.0f, 1f)] [SerializeField] float explosionVolume = 1f;
+    [SerializeField] AudioClip shootingSound;
+    [Range(0.0f, 1f)] [SerializeField] float shootingVolume = 1f;
 
     private void Start()
     {
@@ -48,6 +57,7 @@ public class Enemy : MonoBehaviour
     {
         GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
         laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -projectileSpeed);
+        AudioSource.PlayClipAtPoint(shootingSound, Camera.main.transform.position, shootingVolume);
     }
 
     private void HandleHit(DamageDealer damageDealer)
@@ -62,6 +72,7 @@ public class Enemy : MonoBehaviour
 
     private void Explode()
     {
+        AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, explosionVolume);
         GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity) as GameObject;
         Destroy(explosion, 1f);
         Destroy(gameObject);
