@@ -19,14 +19,22 @@ public class Enemy : MonoBehaviour
     [SerializeField] AudioClip shootingSound;
     [Range(0.0f, 1f)] [SerializeField] float shootingVolume = 1f;
 
+    private bool isShooting = true;
+
     private void Start()
     {
-        InitShotCounter();
+        if (isShooting)
+        {
+            InitShotCounter();
+        }
     }
 
     private void Update()
     {
-        CountDownAndShoot();
+        if (isShooting)
+        {
+            CountDownAndShoot();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,6 +44,11 @@ public class Enemy : MonoBehaviour
         {
             HandleHit(damageDealer);
         }
+    }
+
+    public void SetIsShooting(bool value) 
+    {
+        isShooting = value;
     }
 
     private void InitShotCounter()
