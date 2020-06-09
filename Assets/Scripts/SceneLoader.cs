@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+	[SerializeField] float delayBeforeGameOver = 3f;
+
 	public void LoadGameScene() 
 	{
 		SceneManager.LoadScene("Game");
@@ -12,7 +14,7 @@ public class SceneLoader : MonoBehaviour
 
 	public void LoadGameOver()
 	{
-		SceneManager.LoadScene(SceneManager.sceneCount - 1);
+		StartCoroutine("GameOverWithDelay");
 	}
 
 	public void LoadStartScene()
@@ -23,5 +25,12 @@ public class SceneLoader : MonoBehaviour
 	public void QuitGame() 
 	{
 		Application.Quit();
+	}
+
+	private IEnumerator GameOverWithDelay()
+	{
+		yield return new WaitForSeconds(delayBeforeGameOver);
+
+		SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 1);
 	}
 }

@@ -101,6 +101,7 @@ public class Player : MonoBehaviour
 
     private void Explode()
     {
+        FindObjectOfType<SceneLoader>().LoadGameOver();
         AudioSource.PlayClipAtPoint(explosionClip, Camera.main.transform.position, explosionVolume);
         Destroy(gameObject);
     }
