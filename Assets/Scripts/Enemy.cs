@@ -2,12 +2,13 @@
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Enemy")]
+    [Header("Stats")]
     [SerializeField] float health = 100f;
     [SerializeField] float shotCounter;
     [SerializeField] float minTimeBeforeShots = 0.2f;
     [SerializeField] float maxTimeBetweenShots = 3f;
     [SerializeField] GameObject explosionPrefab;
+    [SerializeField] int scoreValue = 100;
 
     [Header("Projectile")]
     [SerializeField] GameObject laserPrefab;
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
     [Range(0.0f, 1f)] [SerializeField] float shootingVolume = 1f;
 
     private bool isShooting = true;
+    private GameSession gameSession;
 
     private void Start()
     {
@@ -27,6 +29,8 @@ public class Enemy : MonoBehaviour
         {
             InitShotCounter();
         }
+
+        gameSession = FindObjectOfType<GameSession>();
     }
 
     private void Update()
@@ -85,6 +89,11 @@ public class Enemy : MonoBehaviour
 
     private void Explode()
     {
+        if (gameSession)
+        {
+            gameSession.AddToScore(scoreValue);
+        }
+
         AudioSource.PlayClipAtPoint(explosionSound, Camera.main.transform.position, explosionVolume);
         GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity) as GameObject;
         Destroy(explosion, 1f);

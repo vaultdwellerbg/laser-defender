@@ -110,12 +110,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be3102604c6ae0440afc0e977c920746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 200
   shotCounter: 0
   minTimeBeforeShots: 0.2
   maxTimeBetweenShots: 3
   explosionPrefab: {fileID: 1207776421041762814, guid: a15c0e5126ff2414b98aab2e0ce09dec,
     type: 3}
+  points: 200
   laserPrefab: {fileID: 8042875348531936398, guid: b57ea60d1a3214b4fb3588fe61e011d1,
     type: 3}
   projectileSpeed: 8
