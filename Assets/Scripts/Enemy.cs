@@ -72,8 +72,18 @@ public class Enemy : MonoBehaviour
 
     private void Fire()
     {
-        GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
-        laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -projectileSpeed);
+        if (transform.childCount > 0)
+        {
+            foreach (Transform child in transform)
+            {
+                ShootLaser(child);
+            }
+        }
+        else
+        {
+            ShootLaser(transform);
+        }
+
         AudioSource.PlayClipAtPoint(shootingSound, Camera.main.transform.position, shootingVolume);
     }
 
@@ -98,5 +108,11 @@ public class Enemy : MonoBehaviour
         GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity) as GameObject;
         Destroy(explosion, 1f);
         Destroy(gameObject);
+    }
+
+    private void ShootLaser(Transform transform)
+    {
+        GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
+        laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -projectileSpeed);
     }
 }
