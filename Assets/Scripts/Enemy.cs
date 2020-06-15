@@ -3,7 +3,7 @@
 public class Enemy : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] float health = 100f;
+    [SerializeField] int health = 100;
     [SerializeField] float minTimeBeforeShots = 0.2f;
     [SerializeField] float maxTimeBetweenShots = 3f;
     [SerializeField] GameObject explosionPrefab;
@@ -53,6 +53,11 @@ public class Enemy : MonoBehaviour
     public void SetIsShooting(bool value) 
     {
         isShooting = value;
+    }
+
+    public int GetHealth()
+    {
+        return health;
     }
 
     private void InitShotCounter()

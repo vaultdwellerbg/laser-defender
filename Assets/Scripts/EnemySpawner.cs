@@ -9,7 +9,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int startingWaveIndex = 0;
     [SerializeField] bool looping = false;
 
-    // Start is called before the first frame update
     IEnumerator Start()
     {
         do
@@ -29,14 +28,24 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemiesInWave(WaveConfig wave)
     {
+        GameObject lastEnemy = null;
         var numberOfEnemies = wave.GetNumberOfEnemies();
         for (int i = 0; i < numberOfEnemies; i++)
         {
             var newEnemy = Instantiate(wave.GetEnemyPrefab(), wave.GetWaypoints()[0].transform.position, Quaternion.identity);
             newEnemy.GetComponent<EnemyPathing>().SetWaveConfig(wave);
             newEnemy.GetComponent<Enemy>().SetIsShooting(wave.GetEnemiesShoot());
+            lastEnemy = newEnemy;
 
             yield return new WaitForSeconds(wave.GetTimeBetweenSpawns());
+        }
+
+        if (!wave.GetOverlapWithNextWave())
+        {
+            while (lastEnemy != null)
+            {
+                yield return new WaitForSeconds(wave.GetTimeBetweenSpawns());
+            }
         }
     }
 }

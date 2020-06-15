@@ -21,3 +21,4 @@ MonoBehaviour:
   numberOfEnemies: 6
   moveSpeed: 2
   enemiesShoot: 1
+  overlapWithNextWave: 0

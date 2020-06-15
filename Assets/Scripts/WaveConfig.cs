@@ -11,6 +11,7 @@ public class WaveConfig : ScriptableObject
 	[SerializeField] int numberOfEnemies = 10;
 	[SerializeField] float moveSpeed = 2f;
 	[SerializeField] bool enemiesShoot = true;
+	[SerializeField] bool overlapWithNextWave = true;
 
 	public GameObject GetEnemyPrefab() { return enemyPrefab; }
 	public List<Transform> GetWaypoints() 
@@ -28,4 +29,5 @@ public class WaveConfig : ScriptableObject
 	public int GetNumberOfEnemies() { return numberOfEnemies; }
 	public float GetMoveSpeed() { return moveSpeed; }
 	public bool GetEnemiesShoot() { return enemiesShoot; }
+	public bool GetOverlapWithNextWave() { return overlapWithNextWave; }
 }

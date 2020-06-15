@@ -19,5 +19,6 @@ MonoBehaviour:
   timeBetweenSpawns: 0
   spawnRandomFactor: 0.3
   numberOfEnemies: 1
-  moveSpeed: 3
+  moveSpeed: 5
   enemiesShoot: 1
+  overlapWithNextWave: 0
