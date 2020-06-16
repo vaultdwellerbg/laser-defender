@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be3102604c6ae0440afc0e977c920746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 600
+  health: 1000
   minTimeBeforeShots: 1.2
   maxTimeBetweenShots: 2
   explosionPrefab: {fileID: 1207776421041762814, guid: a15c0e5126ff2414b98aab2e0ce09dec,

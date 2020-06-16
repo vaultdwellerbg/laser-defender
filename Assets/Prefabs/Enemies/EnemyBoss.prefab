@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be3102604c6ae0440afc0e977c920746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2000
+  health: 2500
   minTimeBeforeShots: 0.5
   maxTimeBetweenShots: 1
   explosionPrefab: {fileID: 1207776421041762814, guid: a15c0e5126ff2414b98aab2e0ce09dec,
@@ -181,7 +181,7 @@ MonoBehaviour:
   laserPrefab: {fileID: 8042875348531936398, guid: 0d6b326ddde1b4e47a78b10bf58de237,
     type: 3}
   projectileSpeed: 8
-  explosionSound: {fileID: 8300000, guid: 54f2c5ca070c13049b59ea86a73cf807, type: 3}
+  explosionSound: {fileID: 8300000, guid: f12ea90878e397e4d832a124dfa4be65, type: 3}
   explosionVolume: 1
   shootingSound: {fileID: 8300000, guid: faa50ab7a50702440828b931097f3378, type: 3}
   shootingVolume: 1
