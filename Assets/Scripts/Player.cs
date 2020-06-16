@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 1f;
     [SerializeField] int health = 500;
+    [SerializeField] GameObject explosionPrefab;
 
     [Header("Projectile")]
     [SerializeField] GameObject laserPrefab;
@@ -108,6 +109,8 @@ public class Player : MonoBehaviour
     {
         FindObjectOfType<SceneLoader>().LoadGameOver();
         AudioSource.PlayClipAtPoint(explosionClip, Camera.main.transform.position, explosionVolume);
+        GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity) as GameObject;
+        Destroy(explosion, 1f);
         Destroy(gameObject);
     }
 }

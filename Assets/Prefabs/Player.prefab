@@ -99,6 +99,8 @@ MonoBehaviour:
   moveSpeed: 10
   padding: 0.5
   health: 500
+  explosionPrefab: {fileID: 2121307889672302988, guid: 2492b18b7d10e1147a439929f2faf53e,
+    type: 3}
   laserPrefab: {fileID: 5092040848932733360, guid: ad1b92b156f265f4f873550a4fc5480a,
     type: 3}
   projectileSpeed: 12
