@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 7027180519087346977}
   - component: {fileID: 4219049326995599824}
   m_Layer: 9
-  m_Name: Enemy(4)
+  m_Name: EnemyBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,7 +216,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -231,18 +231,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.049999997, y: 0.42}
-      - {x: 0.049999997, y: 0.41}
-      - {x: 0, y: 0.42}
-      - {x: -0.24, y: 0.42}
-      - {x: -0.39, y: 0.38}
-      - {x: -0.41, y: 0.32999998}
-      - {x: -0.41, y: -0.35}
-      - {x: -0.21, y: -0.42}
-      - {x: 0.26999998, y: -0.42}
-      - {x: 0.41, y: -0.22999999}
-      - {x: 0.41, y: 0.31}
-      - {x: 0.28, y: 0.42}
+    - - {x: 0.65000004, y: -1.0500001}
+      - {x: 0.7, y: -1.025}
+      - {x: 1.3000001, y: 0.075}
+      - {x: 1.3000001, y: 0.45000002}
+      - {x: 0.725, y: 0.65000004}
+      - {x: 0.45000002, y: 0.90000004}
+      - {x: 0.125, y: 1.0500001}
+      - {x: -0.2, y: 1.0500001}
+      - {x: -0.925, y: 0.55}
+      - {x: -1.3000001, y: 0.45000002}
+      - {x: -1.3000001, y: 0.05}
+      - {x: -0.675, y: -1.025}
+      - {x: -0.65000004, y: -1.0500001}
+      - {x: -0.075, y: -1.0500001}
+      - {x: 0.075, y: -0.875}
+      - {x: 0.125, y: -1.0500001}
 --- !u!114 &4219049326995599824
 MonoBehaviour:
   m_ObjectHideFlags: 0
