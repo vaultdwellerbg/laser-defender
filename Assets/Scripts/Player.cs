@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     [Range(0.0f, 1f)] [SerializeField] float shootingVolume = 1f;
 
     float xMin, xMax, yMin, yMax;
-    bool fireButtonPressed = false;
+    Coroutine firingCoroutine;
 
     private void Start()
     {
@@ -34,13 +34,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            fireButtonPressed = true;
-            StartCoroutine(FireContinuously()); 
+            firingCoroutine = StartCoroutine(FireContinuously());
         }
 
         if (Input.GetButtonUp("Fire1"))
         {
-            fireButtonPressed = false;
+            StopCoroutine(firingCoroutine);
         }
     }
 
@@ -80,7 +79,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator FireContinuously()
     {
-        while (fireButtonPressed)
+        while (true)
         {
             Fire();
 
